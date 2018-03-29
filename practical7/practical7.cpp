@@ -129,6 +129,7 @@ void Q1d()
 
 	// complete function
 
+	// Loop to find position before he.
 	Node<string> *p = header;
 	while (p->next != nullptr && p->data != "we")
 		p = p->next;
