@@ -136,7 +136,7 @@ void Q1d()
 
 	Node<string> *n = p->next; // Sets n for the node to be deleted.
 
-	// p next now refers to the not referred to by n/
+	// p next now refers to the not referred to by n
 	p->next = n->next;
 
 	// Delete n from the heap
