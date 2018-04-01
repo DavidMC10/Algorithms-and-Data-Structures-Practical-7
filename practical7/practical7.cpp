@@ -79,7 +79,7 @@ void Q1a()
 void Q1b()
 {
 	Node<string> *header = createNodes();
-	
+
 	// complete function
 
 	// Loop to find position of between we and he
@@ -157,7 +157,23 @@ void Q1d()
 template <class T>
 void listIntersection(const LinkedList<T> & a, const LinkedList<T> & b, LinkedList<T> & c)
 {
-	// complete
+	// Two for loops two compare each and every element of the two lists.
+	/*for (int i{ 0 }; i < a.size(); i++) {
+		for (int j{ 0 }; j < b.size(); j++) {
+			if (a.get(i) == b.get(j)) {
+				c.add(b.get(j));
+			}
+
+		}
+	}*/
+
+	// Iterator implementation
+	for (ListIterator<T> itr = a.begin(); itr != a.end(); ++itr) {
+		if (b.find(*itr) != -1)
+		{
+			c.add(*itr);
+		}
+	}
 }
 
 
@@ -167,6 +183,21 @@ void listIntersection(const LinkedList<T> & a, const LinkedList<T> & b, LinkedLi
 template <class T>
 void listUnion(const LinkedList<T> & a, const LinkedList<T> & b, LinkedList<T> & c)
 {
+
+	// All elements of A get added to C.
+	for (ListIterator<T> itr = a.begin(); itr != a.end(); itr++) {
+		c.add(*itr);
+	}
+
+
+	for (ListIterator<T> itr = b.begin(); itr != b.end(); itr++) {
+
+		// If statement checks to see if C doesn't contain element of B
+		// If so element of B gets added to the list of C
+		if (c.find(*itr) == -1) {
+			c.add(*itr);
+		}
+	}
 	// complete
 }
 
@@ -175,7 +206,24 @@ void listUnion(const LinkedList<T> & a, const LinkedList<T> & b, LinkedList<T> &
 //                i.e. elements of List a, which do not belong to List b.
 template <class T>
 void listDifference(const LinkedList<T> & a, const LinkedList<T> & b, LinkedList<T> & c) {
-	// complete
+	
+	for (ListIterator<T> itr = a.begin(); itr != a.end(); ++itr) {
+		
+		// Selection statement checks to ensure element of B isn't contained in A
+		if (b.find(*itr) == -1)
+		{
+			c.add(*itr);
+		}
+	}
+
+	for (ListIterator<T> itr = b.begin(); itr != b.end(); ++itr) {
+
+		// Selection statement checks to ensure element of A isn't contained in B
+		if (a.find(*itr) == -1)
+		{
+			c.add(*itr);
+		}
+	}
 }
 
 
@@ -252,10 +300,10 @@ int main() {
 	Q1d();
 
 	//Q2,3,4
-	//testListSetOperations();
+	testListSetOperations();
 
 	// Optional Q5
-	//blockChainDemo();
+	blockChainDemo();
 
 	// ---------------------------------------------------
 	std::cout << std::endl << "Press enter to quit";

@@ -185,13 +185,26 @@ public:
 	// PostCondition: searches chain for transactions containing address and 
 	//				  calculates and returns the balance of the address
 	float getBalanceOfAddress(std::string address) const {
-		float balance = 0;
+		float balance = 0; 
 
-		// COMPLETE THIS FUNCTION
-		// loop through each block 
-		// loop though each transaction within a block
-		// if the fromAddress of transaction is equal to address then reduce balance by transaction amount
-		// if the toAddress of transaction is equal to address then increase balance by transaction amount
+		for (int i{ 0 }; i < chain.size(); i++) {
+			Block block = chain.get(i);
+			
+			// Loop to search the transactions within the block
+			for (int j{ 0 }; j < block.transactions.size(); j++) {
+				Transaction transaction = block.transactions.get(j);
+			
+				// Address sent money reduce the balance
+				if (transaction.fromAddress == address) {
+					balance -= transaction.amount;
+				}
+
+				// Address received money reduce the balance
+				if (transaction.toAddress == address) {
+					balance += transaction.amount;
+				}
+			}
+		}
 
 		return balance;
 	}
